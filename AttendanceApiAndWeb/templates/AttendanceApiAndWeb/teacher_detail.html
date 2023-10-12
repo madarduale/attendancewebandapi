@@ -1,0 +1,28 @@
+{% extends './base.html' %}
+
+{% block content %}
+
+
+
+<ul class="list-group">
+    <li class="list-group-item active" aria-current="true"><h1>Teacher Detail </h1>{{ teacher.name }}</li>
+    
+    {% comment %}
+        
+    {% endcomment %}
+    <li class="list-group-item">update teacher: <a href="{% url 'teacher_update' teacher.id %}">{{ teacher.firstname }}</a></li>
+        
+    <li class="list-group-item">User name: {{ teacher.username }}</li>
+    <li class="list-group-item">First name: {{ teacher.firstname }}</li>
+    <li class="list-group-item">Last name: {{ teacher.lastname }}</li>
+    <li class="list-group-item">Email: {{ teacher.email }}</li>
+    <li class="list-group-item">ID: {{ teacher.teacher_id }}</li>
+    <li class="list-group-item">Is teacher: {{ teacher.is_teacher }}</li>
+    <li class="list-group-item">Is superuser: {{ teacher.is_superuser }}</li>
+    <li class="list-group-item">Is activate: {{ teacher.is_active }}</li>
+    <li class="list-group-item">IS staff: {{ teacher.is_staff }}</li>
+    <li class="list-group-item"><a class="btn btn-secondary ml-2" href="{% url 'teacher_list' %}">back</a></li>
+
+</ul>
+
+{% endblock  %}

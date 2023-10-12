@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+body{
+    background-color: #f1f1f1;
+    text-align: center;
+    margin-top: 100px;
+}
+h2{
+    color: red;
+    font-size: 50px;
+
+}
+button{
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+}
+button a{
+    text-decoration: none;
+    color: white;
+    
+}
+    </style>
+</head>
+<body>
+    <h2>403, you are not autherozed to acces this page.</h2><br>
+    <button class="btn btn-primary"><a href="{% url 'home' %}">back to home</a></button>
+</body>
+</html>

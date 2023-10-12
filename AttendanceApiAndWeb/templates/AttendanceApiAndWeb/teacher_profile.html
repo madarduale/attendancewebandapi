@@ -1,0 +1,52 @@
+
+<!-- teacher_profile.html -->
+{% extends './base.html' %}
+{% load static %}
+{% block content %}
+<h1 class="profileh1" style="width: 60vw; margin-left: 17rem; box-shadow: 5px 5px 10px 10px rgb(24, 98, 235); color: blue; text-align: center;">Teacher Profile</h1>
+
+
+{% if messages %}
+
+{% for message in messages %}
+
+<p class="alert-info" style="text-align: center;">{{message}}</p>
+{% endfor %}
+  
+{% endif %}
+  
+
+<div class="card profile" style="width: 60vw; margin-left: 17rem; box-shadow: 20px 10px 20px 10px #e43;">
+  <img src="{% static 'images/logo.png' %}" class="card-img-top" alt="teacher-image" style="width: 50%; margin-left: 10rem;">
+  <div class="card-body">
+    <h5 class="card-title">Teacher name: {{ teacher.firstname }}  {{ teacher.lastname }}</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">User name: {{ teacher.username }}</li>
+    <li class="list-group-item">is teacher: {{ teacher.is_teacher}}</li>
+    
+  </ul>
+  
+  
+  <div class="card">
+    <div class="card-header">
+      Assigned classes
+    </div>
+    <div class="card-body">
+      <ul class="list-group list-group-flush">
+        {% for class in classes %}
+        <li class="list-group-item">take attendance: <a href="{% url 'class_attendance' class.id %}">{{ class.name }}</a></li>
+        
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>
+<script>
+
+  setTimeout(function(){
+    document.querySelector('.alert-info').remove();
+  }, 3000);
+</script>
+{% endblock  %}

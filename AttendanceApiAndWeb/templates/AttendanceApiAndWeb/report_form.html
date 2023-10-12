@@ -1,0 +1,22 @@
+<!-- report_form.html -->
+{% extends './base.html' %}
+{% block content %}
+
+<form method="post" action="{% url 'generate_student_report' %}">
+    {% csrf_token %}
+    <div>
+      <label for="student_id">Enter Student ID:</label>
+      <input type="text" id="student_id" name="student_id" class="form-control" >
+    </div>
+    <br>
+    <div>
+      <button type="submit" class="btn btn-primary">Generate Report</button>
+    </div>
+  </form>
+  
+  {% if error_message %}
+    <p>{{ error_message }}</p>
+  {% endif %}
+  
+
+  {% endblock  %}

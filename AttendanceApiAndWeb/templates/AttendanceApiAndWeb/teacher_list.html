@@ -1,0 +1,18 @@
+{% extends './base.html' %}
+
+{% block content %}
+
+<ul class="list-group">
+  <li class="list-group-item active" aria-current="true"><h1>Teacher List</h1></li>
+  {% for teacher in teachers %}
+  <li class="list-group-item">teacher Name: <a href="{% url 'teacher_detail' teacher.id %}">{{ teacher.firstname }}  {{teacher.lastname}}</a></li>
+  <li class="list-group-item">user name: {{teacher.username}}</li>
+  <li class="list-group-item">is teacher: {{teacher.is_teacher}}</li>
+  <li class="list-group-item">--------------------------------------------</li>
+  <li class="list-group-item"><a href="{% url 'delete_teacher' teacher.id %}" class="btn btn-danger ml-5">Delete</a></li>
+        <li class="list-group-item"></li>
+  <!-- <br> -->
+  {% endfor %}
+</ul>
+
+{% endblock  %}

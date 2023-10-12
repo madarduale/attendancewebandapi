@@ -1,0 +1,44 @@
+{% extends './base.html' %}
+{% block content %}
+
+
+<br>
+
+<form method="post" action="{% url 'student_list' %}">
+    {% csrf_token %}
+    <label for="class_id">Select a Class:</label>
+  
+
+    <select name="class_id" id="class_id" class=" form-control form-select form-select-sm" aria-label=".form-select-sm example">
+        <option value="0" selected>Open this select menu</option>
+        {% for class in classes %}
+        <option value="{{ class.id }}">{{ class.name }}</option>
+        {% endfor %}
+    </select>
+    <br>
+    <button type="submit" class="btn btn-info ">Show Students</button>
+   
+  </form>
+  <br>
+  {% if students %} 
+
+    <ul class="list-group">
+        <li class="list-group-item active" aria-current="true"><h2>Students: {{class_name}}</h2></li>
+        {% for student in students %}
+        <li class="list-group-item"><a href="{% url 'student_detail' student.id %}">{{ student.name }}</a>        </li>
+        
+        <li class="list-group-item"><a href="{% url 'delete_student' student.id %}" class="btn btn-danger ml-5">Delete</a></li>
+        <li class="list-group-item"></li>
+        {% endfor %}
+        <li class="list-group-item"><a class="btn btn-secondary" href="{% url 'student_list' %}">back</a></li>
+      </ul>
+
+  {% endif %}
+  
+  
+  {% if error_message %}
+    <p>{{ error_message }}</p>
+    <a class="btn btn-primary" href="{% url 'student_list' %}">back</a>
+  {% endif %}
+
+{% endblock  %}

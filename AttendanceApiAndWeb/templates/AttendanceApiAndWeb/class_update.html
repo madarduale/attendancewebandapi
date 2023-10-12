@@ -1,0 +1,11 @@
+{% extends './base.html' %}
+
+{% block content %}
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    
+    <li class="list-group-item"><button type="submit" class="btn btn-success">Update Class</button><a class="btn btn-secondary ml-2" href="{% url 'class_detail' class.id %}">back</a></li>
+  </form>
+
+{% endblock  %}

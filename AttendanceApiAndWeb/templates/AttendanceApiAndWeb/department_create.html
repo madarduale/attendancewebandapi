@@ -1,0 +1,15 @@
+{% extends './base.html' %}
+{% block content %}
+<h1>Create Department</h1>
+
+<form method="post" id="department-form">
+  {% csrf_token %}
+  <div class="form-group">
+    <label for="department-update-field">Department </label>
+    {{form}}
+    <small id="textHelp" class="form-text text-muted">create department with full name or small</small>
+  </div>
+  <button type="submit" class="btn btn-primary " id="btn1">Create</button>   
+</form>
+
+{% endblock %}

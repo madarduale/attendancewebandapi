@@ -1,0 +1,109 @@
+{% load static %}
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="{% url 'home' %}"><img src="{% static 'images/logo.png' %}" alt="uoh-logo" srcset=""></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        {% if user.is_authenticated and user.is_superuser %}
+
+        <li class="nav-item ">
+          
+          <a class="nav-link" href="{% url 'admin:index' %}">Admin</a>
+     </li>
+
+        <li class="nav-item dropdown ">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Departments
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink1">
+            <a class="dropdown-item" href="{% url 'department_list' %}">Departments List</a>
+            
+             <a class="dropdown-item" href="{% url 'department_create' %}">Departments Create</a>
+            </div>
+          </li>
+  
+        <li class="nav-item dropdown ml-5">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+              Students
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink2">
+               <a class="dropdown-item" href="{% url 'student_list' %}">Students List</a> 
+              <a class="dropdown-item" href="{% url 'student_create' %}"">Students Create</a>
+            
+            </div>
+          </li>
+      
+        <li class="nav-item dropdown ml-5">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Classes
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink3">
+                <a class="dropdown-item" href="{% url 'class_list' %}">Classes List</a>
+              <a class="dropdown-item" href="{% url 'class_create' %}"">Classes Create</a>  
+            
+            </div>
+          </li>
+     
+        <li class="nav-item dropdown ml-5">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink4" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Teachers
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink4">
+               <a class="dropdown-item" href="{% url 'teacher_list' %}">Teachers list</a>
+            
+           
+              
+               {% comment %}
+               <a class="dropdown-item" href="{% url 'teacher_create' %}"">Teachers Create</a>
+               {% endcomment %}
+              <a class="dropdown-item" href="{% url 'teacher_signup' %}">Teacher Signup</a>
+              <a class="dropdown-item" href="{% url 'teacher_login' %}">Teacher login</a>
+
+            </div>
+          </li>
+      
+        <li class="nav-item ml-5">
+            <a class="nav-link" href="{% url 'generate_student_report' %}">Generate Report</a> 
+        </li>
+        <li class="nav-item ml-5">
+          
+              <a class="nav-link" href="{% url 'logout' %}">Admin Logout</a>
+         </li>
+    
+          {% endif %}
+            
+          {% if not user.is_authenticated  %}
+          <li class="nav-item ml-5">
+            <a class="nav-link" href="{% url 'teacher_login' %}">Teacher login</a>
+          </li>
+          
+          {% comment %}
+            
+          <li class="nav-item ml-5 ">
+           <a class="nav-link" href="{% url 'admin_login' %}">Admin Login</a>
+         </li> 
+          {% endcomment %}
+            
+           {% endif %}  
+
+        
+        {% if user.is_authenticated and user.is_teacher %}
+            <li class="nav-item ml-5 ">
+              <a class="nav-link" href="{% url 'teacher_profile' %}">Teacher profile</a>
+            </li>
+           
+            <li class="nav-item ml-5 ">
+              <a class="nav-link" href="{% url 'logout' %}">Teacher Logout</a>
+            </li>
+           
+            {% endif %}  
+      </ul>
+    </div>
+  </nav>
+
+  </body>
+  </html>

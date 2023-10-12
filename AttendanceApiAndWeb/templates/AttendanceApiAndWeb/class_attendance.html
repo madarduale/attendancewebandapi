@@ -1,0 +1,60 @@
+<!-- class_attendance.html -->
+{% extends './base.html' %}
+
+{% block content %}
+
+
+
+<form method="post">
+  {% csrf_token %}
+  <ul class="list-group">
+  <li class="list-group-item active" aria-current="true"><h1>Class Attendance: {{ class.name }}</h1></li>
+  {% for student in students %}
+  <div>
+      <li class="list-group-item">
+
+        <input type="checkbox" id="student_{{ student.id }}" name="student_{{ student.id }}" {% if student.attendance %}checked{% endif %}>
+        <label for="student_{{ student.id }}">{{ student.name }}</label>
+      </li>
+     
+      </div>
+      {% endfor %}
+    </ul><br>
+    
+    <li class="list-group-item"><button type="submit" class="btn btn-primary " style="width: 15vw;" >Submit Attendance</button><a class="btn btn-secondary ml-5" href="{% url 'teacher_profile' %}">back</a></li>
+</form>
+
+<ul class="list-group">
+  
+  {% if messages %}
+  
+  {% for message in messages  %}
+    
+  <li  class="list-group-item text-info">{{message}}</li>
+  {% endfor %}
+    
+    
+  {% endif %}
+    
+</ul>
+<ul class="list-group">
+
+ <li lass="list-group-item active" aria-current="true"></li>
+  
+  {% for attendance in attendances %}
+    
+  <li  class="list-group-item">{{attendance.student}}: {% if attendance.is_present == True %}
+    
+    <a style="color: rgb(16, 64, 221);">presen</a>
+    {% else %}
+    <a style="color: red;">absent</a>
+    {% endif %} </li>
+  
+  <li></li>
+    
+  {% endfor %}
+
+    
+</ul>
+
+{% endblock  %}

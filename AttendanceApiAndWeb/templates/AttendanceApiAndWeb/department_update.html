@@ -1,0 +1,22 @@
+
+{% extends './base.html' %}
+{% block content %}
+
+<h1>Update Department</h1>
+
+<form method="post">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="department-update-field">Department </label>
+      {{form}}
+      <small id="textHelp" class="form-text text-muted">you can update department name or you can leave as it is</small>
+    </div>
+    <button type="submit" class="btn btn-primary">Update</button>  
+    <a class="btn btn-secondary ml-2" href="{% url 'department_detail' department.id %}">back</a>
+
+  </form>
+
+
+{% endblock %}
+
+

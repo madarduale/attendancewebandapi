@@ -594,7 +594,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 def home(request):
     return render(request, 'AttendanceApiAndWeb/home.html')
 
-@login_required
+@login_required(login_url='teacher_login')
 def department_create(request):
     if request.user.is_superuser:
         if request.method == 'POST':
@@ -612,7 +612,7 @@ def department_create(request):
     else:
         return handler403(request, exception=None)
 
-@login_required
+@login_required(login_url='teacher_login')
 def class_create(request):
     if request.user.is_superuser:
         if request.method == 'POST':
@@ -630,7 +630,7 @@ def class_create(request):
     else:
          return handler403(request, exception=None)
 
-@login_required
+@login_required(login_url='teacher_login')
 def student_create(request):
     if request.user.is_superuser:
         if request.method == 'POST':
@@ -727,7 +727,7 @@ class TeacherLoginView(View):
             error_message = 'Invalid username or password.'
         return render(request, 'AttendanceApiAndWeb/teacher_login.html', {'error': error_message})
     
-@login_required
+@login_required(login_url='teacher_login')    
 def logout_view(request):
     if request.user.is_authenticated:
         user=request.user
